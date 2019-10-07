@@ -86,8 +86,9 @@ class Query {
     }
 
     /**
-     * @param string $order
-     * @param string $direction
+     * @param string       $name
+     * @param array|string $value
+     *
      * @return $this
      */
     public function setParameter($name, $value) {
