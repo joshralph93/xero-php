@@ -22,6 +22,7 @@ class Query {
     private $toDate;
     private $date;
     private $offset;
+    private $parameters;
 
     public function __construct(Application $app) {
         $this->app = $app;
@@ -30,6 +31,7 @@ class Query {
         $this->modifiedAfter = null;
         $this->page = null;
         $this->offset = null;
+        $this->parameters = array();
     }
 
     /**
@@ -79,6 +81,21 @@ class Query {
      */
     public function orderBy($order, $direction = self::ORDER_ASC) {
         $this->order = sprintf('%s %s', $order, $direction);
+
+        return $this;
+    }
+
+    /**
+     * @param string $order
+     * @param string $direction
+     * @return $this
+     */
+    public function setParameter($name, $value) {
+        if (is_array($value)) {
+            $value = implode($value, ',');
+        }
+
+        $this->parameters[$name] = $value;
 
         return $this;
     }
@@ -192,6 +209,12 @@ class Query {
 
         if($this->offset !== null) {
             $request->setParameter('offset', $this->offset);
+        }
+
+        if(! empty($this->parameters)) {
+            foreach ($this->parameters as $name => $value) {
+                $request->setParameter($name, $value);
+            }
         }
 
         $request->send();
