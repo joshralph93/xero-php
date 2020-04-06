@@ -1,41 +1,40 @@
 <?php
 
-
 namespace XeroPHP\Remote;
 
-
-interface ObjectInterface {
-
+interface ObjectInterface
+{
     /**
-     * Get the GUID Property if it exists
+     * Get the GUID Property if it exists.
      *
      * @return string|null
      */
-    static function getGUIDProperty();
+    public static function getGUIDProperty();
 
     /**
-     * Get a list of properties
+     * Get a list of properties.
      *
      * @return array
      */
-    static function getProperties();
+    public static function getProperties();
 
     /**
-     * Get a list of the supported HTTP Methods
+     * Get a list of the supported HTTP Methods.
      *
      * @return array
      */
-    static function getSupportedMethods();
+    public static function getSupportedMethods();
 
     /**
-     * return the URI of the resource (if any)
+     * return the URI of the resource (if any).
      *
      * @return string
      */
-    static function getResourceURI();
+    public static function getResourceURI();
 
-    static function getAPIStem();
+    public static function getRootNodeName();
 
-    static function isPageable();
+    public static function getAPIStem();
 
+    public static function isPageable();
 }

@@ -1,26 +1,26 @@
 <?php
+
 namespace XeroPHP\Models\Accounting\ManualJournal;
 
 use XeroPHP\Remote;
 use XeroPHP\Models\Accounting\TrackingCategory;
 
-class JournalLine extends Remote\Object
+class JournalLine extends Remote\Model
 {
-
     /**
-     * total for line. Debits are positive, credits are negative value
+     * total for line. Debits are positive, credits are negative value.
      *
      * @property string LineAmount
      */
 
     /**
-     * See Accounts
+     * See Accounts.
      *
      * @property string AccountCode
      */
 
     /**
-     * Description for journal line
+     * Description for journal line.
      *
      * @property string Description
      */
@@ -33,22 +33,20 @@ class JournalLine extends Remote\Object
      */
 
     /**
-     * Optional Tracking Category – see Tracking.  Any JournalLine can have a maximum of 2
+     * Optional Tracking Category – see Tracking. Any JournalLine can have a maximum of 2
      * <TrackingCategory> elements.
      *
      * @property TrackingCategory[] Tracking
      */
 
     /**
-     * The calculated tax amount based on the TaxType and LineAmount
+     * The calculated tax amount based on the TaxType and LineAmount.
      *
      * @property float TaxAmount
      */
 
-
-
     /**
-     * Get the resource uri of the class (Contacts) etc
+     * Get the resource uri of the class (Contacts) etc.
      *
      * @return string
      */
@@ -57,9 +55,8 @@ class JournalLine extends Remote\Object
         return 'JournalLines';
     }
 
-
     /**
-     * Get the root node name.  Just the unqualified classname
+     * Get the root node name.  Just the unqualified classname.
      *
      * @return string
      */
@@ -68,9 +65,8 @@ class JournalLine extends Remote\Object
         return 'JournalLine';
     }
 
-
     /**
-     * Get the guid property
+     * Get the guid property.
      *
      * @return string
      */
@@ -79,9 +75,8 @@ class JournalLine extends Remote\Object
         return '';
     }
 
-
     /**
-     * Get the stem of the API (core.xro) etc
+     * Get the stem of the API (core.xro) etc.
      *
      * @return string|null
      */
@@ -90,37 +85,35 @@ class JournalLine extends Remote\Object
         return Remote\URL::API_CORE;
     }
 
-
     /**
-     * Get the supported methods
+     * Get the supported methods.
      */
     public static function getSupportedMethods()
     {
-        return array(
-        );
+        return [
+        ];
     }
 
     /**
-     *
      * Get the properties of the object.  Indexed by constants
      *  [0] - Mandatory
      *  [1] - Type
      *  [2] - PHP type
      *  [3] - Is an Array
-     *  [4] - Saves directly
+     *  [4] - Saves directly.
      *
      * @return array
      */
     public static function getProperties()
     {
-        return array(
-            'LineAmount' => array (true, self::PROPERTY_TYPE_STRING, null, false, false),
-            'AccountCode' => array (true, self::PROPERTY_TYPE_STRING, null, false, false),
-            'Description' => array (false, self::PROPERTY_TYPE_STRING, null, false, false),
-            'TaxType' => array (false, self::PROPERTY_TYPE_ENUM, null, false, false),
-            'Tracking' => array (false, self::PROPERTY_TYPE_OBJECT, 'Accounting\\TrackingCategory', true, false),
-            'TaxAmount' => array (false, self::PROPERTY_TYPE_FLOAT, null, false, false)
-        );
+        return [
+            'LineAmount' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
+            'AccountCode' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
+            'Description' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'TaxType' => [false, self::PROPERTY_TYPE_ENUM, null, false, false],
+            'Tracking' => [false, self::PROPERTY_TYPE_OBJECT, 'Accounting\\TrackingCategory', true, false],
+            'TaxAmount' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
+        ];
     }
 
     public static function isPageable()
@@ -138,12 +131,14 @@ class JournalLine extends Remote\Object
 
     /**
      * @param string $value
+     *
      * @return JournalLine
      */
     public function setLineAmount($value)
     {
         $this->propertyUpdated('LineAmount', $value);
         $this->_data['LineAmount'] = $value;
+
         return $this;
     }
 
@@ -157,12 +152,14 @@ class JournalLine extends Remote\Object
 
     /**
      * @param string $value
+     *
      * @return JournalLine
      */
     public function setAccountCode($value)
     {
         $this->propertyUpdated('AccountCode', $value);
         $this->_data['AccountCode'] = $value;
+
         return $this;
     }
 
@@ -176,12 +173,14 @@ class JournalLine extends Remote\Object
 
     /**
      * @param string $value
+     *
      * @return JournalLine
      */
     public function setDescription($value)
     {
         $this->propertyUpdated('Description', $value);
         $this->_data['Description'] = $value;
+
         return $this;
     }
 
@@ -195,18 +194,19 @@ class JournalLine extends Remote\Object
 
     /**
      * @param string $value
+     *
      * @return JournalLine
      */
     public function setTaxType($value)
     {
         $this->propertyUpdated('TaxType', $value);
         $this->_data['TaxType'] = $value;
+
         return $this;
     }
 
     /**
-     * @return TrackingCategory[]|Remote\Collection
-     * Always returns a collection, switch is for type hinting
+     * @return Remote\Collection|TrackingCategory[]
      */
     public function getTracking()
     {
@@ -215,15 +215,17 @@ class JournalLine extends Remote\Object
 
     /**
      * @param TrackingCategory $value
+     *
      * @return JournalLine
      */
     public function addTracking(TrackingCategory $value)
     {
         $this->propertyUpdated('Tracking', $value);
-        if(!isset($this->_data['Tracking'])){
+        if (! isset($this->_data['Tracking'])) {
             $this->_data['Tracking'] = new Remote\Collection();
         }
         $this->_data['Tracking'][] = $value;
+
         return $this;
     }
 
@@ -234,7 +236,4 @@ class JournalLine extends Remote\Object
     {
         return $this->_data['TaxAmount'];
     }
-
-
-
 }

@@ -1,27 +1,25 @@
 <?php
+
 namespace XeroPHP\Models\PayrollUS\Paystub;
 
 use XeroPHP\Remote;
 
-class BenefitLine extends Remote\Object
+class BenefitLine extends Remote\Model
 {
-
     /**
-     * Xero identifier for payroll benefit type
+     * Xero identifier for payroll benefit type.
      *
      * @property string BenefitTypeID
      */
 
     /**
-     * Reimbursement amount
+     * Reimbursement amount.
      *
      * @property float Amount
      */
 
-
-
     /**
-     * Get the resource uri of the class (Contacts) etc
+     * Get the resource uri of the class (Contacts) etc.
      *
      * @return string
      */
@@ -30,9 +28,8 @@ class BenefitLine extends Remote\Object
         return 'BenefitLine';
     }
 
-
     /**
-     * Get the root node name.  Just the unqualified classname
+     * Get the root node name.  Just the unqualified classname.
      *
      * @return string
      */
@@ -41,9 +38,8 @@ class BenefitLine extends Remote\Object
         return 'BenefitLine';
     }
 
-
     /**
-     * Get the guid property
+     * Get the guid property.
      *
      * @return string
      */
@@ -52,9 +48,8 @@ class BenefitLine extends Remote\Object
         return '';
     }
 
-
     /**
-     * Get the stem of the API (core.xro) etc
+     * Get the stem of the API (core.xro) etc.
      *
      * @return string|null
      */
@@ -63,33 +58,31 @@ class BenefitLine extends Remote\Object
         return Remote\URL::API_PAYROLL;
     }
 
-
     /**
-     * Get the supported methods
+     * Get the supported methods.
      */
     public static function getSupportedMethods()
     {
-        return array(
-        );
+        return [
+        ];
     }
 
     /**
-     *
      * Get the properties of the object.  Indexed by constants
      *  [0] - Mandatory
      *  [1] - Type
      *  [2] - PHP type
      *  [3] - Is an Array
-     *  [4] - Saves directly
+     *  [4] - Saves directly.
      *
      * @return array
      */
     public static function getProperties()
     {
-        return array(
-            'BenefitTypeID' => array (false, self::PROPERTY_TYPE_STRING, null, false, false),
-            'Amount' => array (false, self::PROPERTY_TYPE_FLOAT, null, false, false)
-        );
+        return [
+            'BenefitTypeID' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'Amount' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
+        ];
     }
 
     public static function isPageable()
@@ -107,12 +100,14 @@ class BenefitLine extends Remote\Object
 
     /**
      * @param string $value
+     *
      * @return BenefitLine
      */
     public function setBenefitTypeID($value)
     {
         $this->propertyUpdated('BenefitTypeID', $value);
         $this->_data['BenefitTypeID'] = $value;
+
         return $this;
     }
 
@@ -126,14 +121,14 @@ class BenefitLine extends Remote\Object
 
     /**
      * @param float $value
+     *
      * @return BenefitLine
      */
     public function setAmount($value)
     {
         $this->propertyUpdated('Amount', $value);
         $this->_data['Amount'] = $value;
+
         return $this;
     }
-
-
 }
